@@ -66,13 +66,13 @@ exports.login = async (req, res) => {
                     password: user.password,
                     user_profile: user.user_profile
                 }
-                jwt.sign(payload, 'jwtsecret', { expiresIn: 6000000 }, (err, token) => {
+                jwt.sign(payload, 'jwtsecret', { expiresIn: 60000000 }, (err, token) => {
                     if (err) throw err;
                     else res.json({
                         result: {
                             token,
                             payload,
-                            time_out_token: 6000000
+                            time_out_token: 60000000
                         },
                         status: 200,
                         message: "Login successful",
