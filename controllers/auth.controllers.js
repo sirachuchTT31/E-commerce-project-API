@@ -64,6 +64,7 @@ exports.login = async (req, res) => {
                     name: user.name,
                     lastname: user.lastname,
                     password: user.password,
+                    role : user.role,
                     user_profile: user.user_profile
                 }
                 jwt.sign(payload, 'jwtsecret', { expiresIn: 60000000 }, (err, token) => {
