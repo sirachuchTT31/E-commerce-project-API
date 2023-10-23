@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const shopSchema = mongoose.Schema({
+    shop_id: String,
     shop_name: String,
     shop_description: String,
     shop_tel: { type: String, maxLength: 10 },
@@ -9,4 +10,4 @@ const shopSchema = mongoose.Schema({
     user_id: String,
 }, { timestamps: true })
 
-module.exports = mongoose.model('shop', shopSchema)
+module.exports = mongoose.model('shops', shopSchema)
