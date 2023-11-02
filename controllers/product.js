@@ -8,8 +8,22 @@ exports.get_products = async (req, res) => {
 }
 exports.create = async (req, res) => {
     try {
-        console.log(req.body)
-        const product_obj = await product_model(req.body).save()
+        var pd_code_stamp = "PRODC"
+        var math = Math.random() * 100000
+        let newmath = Math.ceil(math)
+        var new_pd_stamp = pd_code_stamp + newmath.toString()
+        let new_produtct = {
+            product_id : new_pd_stamp , 
+            product_name: req.body.product_name,
+            product_detail: req.body.product_detail,
+            product_price: req.body.product_price,
+            product_qty: req.body.product_qty,
+            product_type : req.body.product_type,
+            product_for_company: req.body.product_for_company,
+            global_image: req.body.global_image,
+            category_code: req.body.category_code,
+        }
+         const product_obj = await product_model(new_produtct).save()
         res.json({
             "status": 200,
             "result": product_obj,

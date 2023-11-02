@@ -60,11 +60,12 @@ exports.login = async (req, res) => {
             }
             else {
                 var payload = {
+                    user_id: user._id,
                     user_name: user.user_name,
                     name: user.name,
                     lastname: user.lastname,
                     password: user.password,
-                    role : user.role,
+                    role: user.role,
                     user_profile: user.user_profile
                 }
                 jwt.sign(payload, 'jwtsecret', { expiresIn: 60000000 }, (err, token) => {
@@ -90,5 +91,22 @@ exports.login = async (req, res) => {
     }
     catch (e) {
         return null
+    }
+}
+
+
+exports.get_user_by_id = async (req, res) => {
+    try {
+        var user_name = req.params.id
+        console.log(user_name)
+        const user_by_id = await user_model.findOne({ user_name: user_name }).exec();
+        res.json({
+            "status": 200,
+            "message": "get result by id successfully ",
+            "result": user_by_id
+        })
+    }
+    catch (e) {
+        console.log(e)
     }
 }
